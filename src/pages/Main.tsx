@@ -14,12 +14,12 @@ const Main = () => {
         <p className="text-slate-100">Photo by
           <Link to="https://unsplash.com/photos/c0I4ahyGIkA"
             className="hover:text-amber-200 duration-300"
-          > Jesse Bowser</Link>
+            target="_blank" rel="noopener noreferrer"> Jesse Bowser</Link>
         </p>
         <p className="text-slate-100 justify-self-center">powered by
           <Link to="https://unsplash.com/developers"
             className="hover:text-amber-200 duration-300"
-          > Unsplash API</Link>
+            target="_blank" rel="noopener noreferrer"> Unsplash API</Link>
         </p>
       </div>
     </div>
