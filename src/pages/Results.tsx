@@ -1,3 +1,4 @@
+import { Outlet } from "react-router-dom";
 import { getPhotos } from "../loaders";
 import { useLoaderData, useParams } from "react-router-dom";
 import SearchBar from "../components/SearchBar";
@@ -35,6 +36,7 @@ const Results = () => {
                     </div>
                 </div>
             </div>
+            <Outlet />
         </>
     )
 }
