@@ -2,17 +2,9 @@ import { getPhotos } from "../loaders";
 import { useLoaderData, useParams } from "react-router-dom";
 import SearchBar from "../components/SearchBar";
 // import type { LoaderFunctionArgs } from 'react-router-dom'
+import ImageCard from "../components/ImageCard";
 
-type Object = {
-    params: Params
-}
-
-type Params = {
-    query: string
-}
-
-
-export function loader({ params }: Object) {
+export function loader({ params }: any) {
     // console.log('params', params)
     return getPhotos(params.query);
 }
@@ -23,27 +15,27 @@ const Results = () => {
     const { query } = useParams();
 
     const imageElements = loaderData.map((img: any) => (
-        <div key={img.id} className="mb-6 break-inside-avoid">
-            <img src={img.urls.small} alt={img.alt_description} className="" />
-            <div className="flex mt-2 mb-4 gap-4">
-                <div className="bg-slate-200 px-2 py-1 rounded">{img.tags[0].title}</div>
-                <div className="bg-slate-200 px-2 py-1 rounded">{img.tags[1].title}</div>
-                <div className="bg-slate-200 px-2 py-1 rounded">{img.tags[2].title}</div>
-            </div>
-        </div>
+        <ImageCard img={img} key={img.id} query={query}/>
     ))
 
+    const queryCapitalize = query ? query.charAt(0)?.toUpperCase() + query.slice(1) : "";
+
     return (
-        <div className="p-8">
-            <SearchBar />
-            <div className="max-w-7xl mx-auto">
-                <h1 className="mt-6 text-5xl font-bold">{query}</h1>
-                <p className="my-4 text-xl font-bold">Results for {query}</p>
-                <div className="max-[450px]:columns-1 columns-2 md:columns-3 gap-6 ">
-                    {imageElements}
+        <>
+            <div className="fixed flex gap-8 px-8 py-6 items-center bg-white w-full">
+                <p className="text-4xl font-extrabold">PhotoGallery</p>
+                <SearchBar miniSearchBar={true} />
+            </div>
+            <div className="px-8 pt-24 pb-8">
+                <div className="max-w-7xl mx-auto">
+                    <h1 className="mt-6 text-5xl font-bold">{queryCapitalize}</h1>
+                    <p className="my-4 text-xl font-bold">Results for {query?.toLowerCase()}</p>
+                    <div className="max-[450px]:columns-1 columns-2 md:columns-3 gap-6 ">
+                        {imageElements}
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 export default Results

@@ -8,7 +8,7 @@ const Main = () => {
         <h1 className="text-5xl font-bold text-slate-50">PhotoGallery</h1>
         <p className="mt-4 text-lg text-slate-50">The internet’s source for visuals.</p>
         <p className="text-lg text-slate-50">Powered by creators everywhere.</p>
-        <SearchBar />
+        <SearchBar miniSearchBar={false} />
       </div>
       <div className="fixed bottom-2 left-2 grid gap-2 w-full grid-cols-3">
         <p className="text-slate-100">Photo by
