@@ -1,17 +1,30 @@
+import { useState, useEffect, useContext } from "react"
 import { Link } from "react-router-dom"
+import { Context } from "../Context"
 
 type TagType = {
   title: string
 }
 
 const ImageCard = ({ img }: any) => {
-  console.log(img)
+  // const [openModal, setOpenModal] = useState(false)
+  const context = useContext(Context);
+  useEffect(() => {
+    console.log(context?.openModal)
+  }, [context?.openModal])
+
+  useEffect(() => {
+    if (context?.openModal) {
+      document.body.style.overflow = "hidden"
+    }
+  })
+  // console.log(img)
   return (
     // <Link to={`${img.id}`} >
-    <Link to="modal" state={{img: img}} >
-      <div className="mb-6 break-inside-avoid max-w-fit">
+    <Link to={`${img.id}`} state={{ img: img }}>
+      <div className="mb-6 break-inside-avoid max-w-fit" onClick={() => context?.setOpenModal(true)}>
         <img src={img.urls.small} alt={img.alt_description} className="max-w-full" />
-        <div className="flex mt-2 gap-4 max-w-full">
+        <div className="flex flex-wrap mt-2 gap-x-4 gap-y-2 max-w-full">
           {img.tags.map((tag: TagType) => (
             <div className="bg-slate-200 px-2 py-1 rounded" key={tag.title}>{tag.title}</div>
           ))}

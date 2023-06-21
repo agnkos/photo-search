@@ -4,6 +4,8 @@ import { useLoaderData, useParams } from "react-router-dom";
 import SearchBar from "../components/SearchBar";
 // import type { LoaderFunctionArgs } from 'react-router-dom'
 import ImageCard from "../components/ImageCard";
+import { useContext, useState } from "react";
+import { Context } from "../Context";
 
 export function loader({ params }: any) {
     // console.log('params', params)
@@ -14,16 +16,17 @@ const Results = () => {
 
     const loaderData = useLoaderData() as any;
     const { query } = useParams();
+    const context = useContext(Context);
 
     const imageElements = loaderData.map((img: any) => (
-        <ImageCard img={img} key={img.id} query={query}/>
+        <ImageCard img={img} key={img.id} query={query} />
     ))
 
     const queryCapitalize = query ? query.charAt(0)?.toUpperCase() + query.slice(1) : "";
 
     return (
-        <>
-            <div className="fixed flex gap-8 px-8 py-6 items-center bg-white w-full">
+        <div className={`${context?.openModal ? "overflow-hidden" : ""}`}>
+            <div className={`fixed flex gap-8 px-8 py-6 items-center bg-white w-full`}>
                 <p className="text-4xl font-extrabold">PhotoGallery</p>
                 <SearchBar miniSearchBar={true} />
             </div>
@@ -37,7 +40,7 @@ const Results = () => {
                 </div>
             </div>
             <Outlet />
-        </>
+        </div>
     )
 }
 export default Results
