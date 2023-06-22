@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react"
+import { useEffect, useContext } from "react"
 import { Link } from "react-router-dom"
 import { Context } from "../Context"
 
@@ -9,15 +9,15 @@ type TagType = {
 const ImageCard = ({ img }: any) => {
   // const [openModal, setOpenModal] = useState(false)
   const context = useContext(Context);
-  useEffect(() => {
-    console.log(context?.openModal)
-  }, [context?.openModal])
+  // useEffect(() => {
+  //   console.log(context?.openModal)
+  // }, [context?.openModal])
 
   useEffect(() => {
     if (context?.openModal) {
       document.body.style.overflow = "hidden"
-    }
-  })
+    } else document.body.style.overflow = "unset"
+  }, [context?.openModal])
   // console.log(img)
   return (
     // <Link to={`${img.id}`} >

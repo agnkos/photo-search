@@ -29,7 +29,7 @@ const SearchBar = ({ miniSearchBar }: SearchBarType) => {
 
     return (
         <div
-            className={`mt-4 p-2 flex items-center justify-between border border-slate-500 ${miniSearchBar === true ? "rounded-full focus-within:ring-2 hover:ring-2 flex-grow mt-0" : "rounded-md focus-within:ring-8 hover:ring-8"} bg-slate-50  focus-within:ring-slate-600/40 hover:ring-slate-600/40 ease-linear duration-300`}>
+            className={`p-2 flex items-center justify-between border border-slate-500 ${miniSearchBar === true ? "rounded-full focus-within:ring-2 hover:ring-2 flex-grow mt-0" : "mt-4 rounded-md focus-within:ring-8 hover:ring-8"} bg-slate-50  focus-within:ring-slate-600/40 hover:ring-slate-600/40 ease-linear duration-300`}>
             <MagnifyingGlassIcon className="w-6 h-6 m-2 text-slate-500" />
             <input
                 type="text"

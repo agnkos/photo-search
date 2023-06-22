@@ -1,11 +1,11 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 import { getPhotos } from "../loaders";
 import { useLoaderData, useParams } from "react-router-dom";
 import SearchBar from "../components/SearchBar";
 // import type { LoaderFunctionArgs } from 'react-router-dom'
 import ImageCard from "../components/ImageCard";
-import { useContext, useState } from "react";
-import { Context } from "../Context";
+// import { useContext, useState } from "react";
+// import { Context } from "../Context";
 
 export function loader({ params }: any) {
     // console.log('params', params)
@@ -16,7 +16,7 @@ const Results = () => {
 
     const loaderData = useLoaderData() as any;
     const { query } = useParams();
-    const context = useContext(Context);
+    // const context = useContext(Context);
 
     const imageElements = loaderData.map((img: any) => (
         <ImageCard img={img} key={img.id} query={query} />
@@ -25,9 +25,9 @@ const Results = () => {
     const queryCapitalize = query ? query.charAt(0)?.toUpperCase() + query.slice(1) : "";
 
     return (
-        <div className={`${context?.openModal ? "overflow-hidden" : ""}`}>
+        <div >
             <div className={`fixed flex gap-8 px-8 py-6 items-center bg-white w-full`}>
-                <p className="text-4xl font-extrabold">PhotoGallery</p>
+                <Link to="/"><p className="text-4xl font-extrabold">PhotoGallery</p></Link>
                 <SearchBar miniSearchBar={true} />
             </div>
             <div className="px-8 pt-24 pb-8">
